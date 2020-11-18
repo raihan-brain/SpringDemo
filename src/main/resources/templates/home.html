@@ -78,27 +78,22 @@
 <div class="container-fluid h-100">
 	<div class="row justify-content-center align-items-center h-100">
 		<div class="col col-lg-2">
-			<h1>Dashboard</h1>
-
+			<h1>Public Status</h1>
 		</div>
-		<div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3"
-		     style="margin-top: 100px;">
-			<!-- tag::thAction[] -->
-			<h1>Dashboard</h1>
-		</div>
-		<div class="col col-lg-2">
-			<form method="POST"
-			      th:action="@{/logout}"
-			      id="logoutForm">
-				<input type="submit"
-				       value="Logout"/>
-			</form>
-		</div>
-
 	</div>
-
-
 </div>
+<div class="container">
+	<h2>Status List</h2>
+	<ul class="list-group">
+		<div th:each="socialData :${socialClub}">
 
+			<li class="list-group-item">
+				<p th:text="${socialData.getStatus()}"></p>
+				<p th:text="${socialData.getCreatedAt()}"></p>
+				<p th:text="${socialData.getLocation().getLocation()}"></p>
+			</li>
+		</div>
+	</ul>
+</div>
 </body>
 </html>
