@@ -73,13 +73,18 @@ public class DashboardController {
 			return "dashboard";
 		}
 
-		social.setUser(user);
+		List<SocialClub> test2 = this.socialClubRepository.findByUser(user);
 
+		if (social.getPinStatus() == 1) {
+			test2.stream().forEach(x -> {
+				x.setPinStatus(0);
+				this.socialClubRepository.save(x);
+			});
+		}
+
+		social.setUser(user);
 		this.socialClubRepository.save(social);
 
-		System.out.println("Printing from database");
-		Iterable<SocialClub> test = this.socialClubRepository.findAll();
-		test.forEach(x -> System.out.println(x));
 		return "redirect:/";
 	}
 }
