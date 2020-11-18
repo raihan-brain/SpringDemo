@@ -22,64 +22,64 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping ("/dashboard")
+@RequestMapping("/dashboard")
 public class DashboardController {
 
-    private UserRepository userRepo;
-    private LocationRepository locationRepository;
-    private SocialClubRepository socialClubRepository;
+	private UserRepository userRepo;
+	private LocationRepository locationRepository;
+	private SocialClubRepository socialClubRepository;
 
-    @Autowired
-    public DashboardController (
-            UserRepository userRepo, LocationRepository locationRepository, SocialClubRepository socialRepo ) {
-        this.userRepo = userRepo;
-        this.locationRepository = locationRepository;
-        this.socialClubRepository = socialRepo;
-    }
+	@Autowired
+	public DashboardController(UserRepository userRepo, LocationRepository locationRepository,
+			SocialClubRepository socialRepo) {
+		this.userRepo = userRepo;
+		this.locationRepository = locationRepository;
+		this.socialClubRepository = socialRepo;
+	}
 
-    @ModelAttribute (name = "social")
-    public SocialClub social () {
-        return new SocialClub ();
-    }
+	@ModelAttribute(name = "social")
+	public SocialClub social() {
+		return new SocialClub();
+	}
 
-//    @ModelAttribute(name = "locations")
-//    public Location locations() {
-//        return  new Location (  )
-//    }
+	// @ModelAttribute(name = "locations")
+	// public Location locations() {
+	// return new Location ( )
+	// }
 
-    @GetMapping
-    public String showDashboard ( Principal principal, Model model ) {
-        String userName = principal.getName ();
-        User user = userRepo.findByUsername ( userName );
+	@GetMapping
+	public String showDashboard(Principal principal, Model model) {
+		String userName = principal.getName();
+		User user = userRepo.findByUsername(userName);
 
-//        System.out.println ( "in the dashboard method" );
-//        System.out.println ( user );
+		// System.out.println ( "in the dashboard method" );
+		// System.out.println ( user );
 
-        Iterable<Location> locationList = locationRepository
-                .findAll ( Sort.by ( "location" ).ascending () );
+		Iterable<Location> locationList = locationRepository.findAll(Sort.by("location").ascending());
 
-        model.addAttribute ( "locations", locationList );
-        model.addAttribute ( user );
-//        System.out.println ( model );
+		model.addAttribute("locations", locationList);
+		model.addAttribute(user);
+		// System.out.println ( model );
 
-        return "dashboard";
-    }
+		return "dashboard";
+	}
 
-    @PostMapping
-    public String processSocial ( @Valid SocialClub social, Errors errors, @AuthenticationPrincipal User user ) {
+	@PostMapping
+	public String processSocial(@Valid @ModelAttribute("social") SocialClub social, Errors errors,
+			@AuthenticationPrincipal User user) {
 
-        if ( errors.hasErrors () ) {
-            System.out.println ( errors );
-            return "dashboard";
-        }
+		if (errors.hasErrors()) {
+			System.out.println(errors);
+			return "dashboard";
+		}
 
-        social.setUser ( user );
+		social.setUser(user);
 
-        this.socialClubRepository.save ( social );
+		this.socialClubRepository.save(social);
 
-        System.out.println ("Printing from database");
-        Iterable<SocialClub> test = this.socialClubRepository.findAll ();
-        test.forEach ( x->System.out.println (x) );
-        return "redirect:/";
-    }
+		System.out.println("Printing from database");
+		Iterable<SocialClub> test = this.socialClubRepository.findAll();
+		test.forEach(x -> System.out.println(x));
+		return "redirect:/";
+	}
 }
