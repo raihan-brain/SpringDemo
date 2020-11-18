@@ -18,9 +18,9 @@ public class SpringfirstApplication {
     public CommandLineRunner dataLoader ( LocationRepository locationRepository ) {
         return new CommandLineRunner () {
             @Override public void run ( String... args ) throws Exception {
-                locationRepository.save ( new Location (1, "Sylhet") );
-                locationRepository.save ( new Location (2, "Bandarban") );
-                locationRepository.save ( new Location (3, "Khulna") );
+                locationRepository.save ( new Location (1L, "Sylhet") );
+                locationRepository.save ( new Location (2L, "Bandarban") );
+                locationRepository.save ( new Location (3L, "Khulna") );
             }
         };
     }

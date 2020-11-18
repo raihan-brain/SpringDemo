@@ -20,7 +20,6 @@ public class SocialClub implements Serializable {
     @NotBlank (message = "Status cannot be empty")
     private String status;
 
-    @NotBlank (message = "Privacy status cannot be empty")
     private int isPrivate; // 1 = yes, 0 = no
 
     private int pinStatus; // 1 = yes, 0 = no
@@ -28,7 +27,7 @@ public class SocialClub implements Serializable {
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Location.class)
     private Location location;
 
     private Date createdAt;

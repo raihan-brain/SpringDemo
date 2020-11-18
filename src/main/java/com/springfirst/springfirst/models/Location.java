@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class Location {
 
     @Id
-    private final Integer id;
+    private final Long id;
     private final String location;
 
 
