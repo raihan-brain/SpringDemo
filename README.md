@@ -12,5 +12,6 @@ What is included in this project ?
   4. H2 Database (in memory database)
 
 How to run ? 
+
  Clone this repo to any local directory and open it with your preffered idea for me its either vscode or intellij. Give some time for maven to fetch all the necessary things
  and after that you're good to go.
