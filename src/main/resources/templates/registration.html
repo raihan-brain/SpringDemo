@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -18,6 +19,52 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand"
+	   th:href="@{/dashboard}">Dashboard</a>
+	<button class="navbar-toggler"
+	        type="button"
+	        data-toggle="collapse"
+	        data-target="#navbarSupportedContent"
+	        aria-controls="navbarSupportedContent"
+	        aria-expanded="false"
+	        aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse"
+	     id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link"
+				   th:href="@{/}">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"
+				   th:href="@{/dashboard}">Dashboard</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"
+				   th:href="@{/profile}">Profile</a>
+			</li>
+		</ul>
+		<div sec:authorize="isAuthenticated()">
+
+			<form class="form-inline my-2 my-lg-0"
+			      method="POST"
+			      th:action="@{/logout}">
+				<button class="btn btn-outline-success my-2 my-sm-0"
+				        type="submit">Logout
+				</button>
+			</form>
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<a class="btn btn-outline-success my-2 my-sm-"
+			   th:href="@{/login}"
+			   role="button">Login</a>
+		</div>
+	</div>
+</nav>
 <h1>Register</h1>
 
 <section class="contact-from pt-4">

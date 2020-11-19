@@ -1,14 +1,15 @@
 package com.springfirst.springfirst;
 
-import com.springfirst.springfirst.data.LocationRepository;
-import com.springfirst.springfirst.data.UserRepository;
-import com.springfirst.springfirst.models.Location;
-import com.springfirst.springfirst.models.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.springfirst.springfirst.data.LocationRepository;
+import com.springfirst.springfirst.data.UserRepository;
+import com.springfirst.springfirst.models.Location;
+import com.springfirst.springfirst.models.User;
 
 @Profile("!prod")
 @Configuration
@@ -29,5 +30,4 @@ public class DevelopmentConfig {
 			}
 		};
 	}
-
 }
