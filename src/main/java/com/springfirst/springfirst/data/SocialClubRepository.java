@@ -12,4 +12,5 @@ public interface SocialClubRepository extends CrudRepository<SocialClub, Long> {
 
     List<SocialClub> findByUser( User user );
 
+    List<SocialClub> findByUserAndPinStatus(User user, Integer pinStatus);
 }
