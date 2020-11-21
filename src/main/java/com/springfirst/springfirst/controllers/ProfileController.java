@@ -1,6 +1,6 @@
-package com.springfirst.springfirst.web;
+package com.springfirst.springfirst.controllers;
 
-import com.springfirst.springfirst.data.SocialClubRepository;
+import com.springfirst.springfirst.repository.SocialClubRepository;
 import com.springfirst.springfirst.models.SocialClub;
 import com.springfirst.springfirst.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;

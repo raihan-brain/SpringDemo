@@ -1,8 +1,8 @@
-package com.springfirst.springfirst.web;
+package com.springfirst.springfirst.controllers;
 
-import com.springfirst.springfirst.data.LocationRepository;
-import com.springfirst.springfirst.data.SocialClubRepository;
-import com.springfirst.springfirst.data.UserRepository;
+import com.springfirst.springfirst.repository.LocationRepository;
+import com.springfirst.springfirst.repository.SocialClubRepository;
+import com.springfirst.springfirst.repository.UserRepository;
 import com.springfirst.springfirst.models.Location;
 import com.springfirst.springfirst.models.SocialClub;
 import com.springfirst.springfirst.models.User;
@@ -69,6 +69,7 @@ public class DashboardController {
 			@AuthenticationPrincipal User user) {
 
 		if (errors.hasErrors()) {
+			System.out.println ("============== in error section");
 			System.out.println(errors);
 			return "dashboard";
 		}

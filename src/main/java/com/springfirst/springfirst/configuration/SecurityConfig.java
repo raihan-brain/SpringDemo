@@ -1,4 +1,4 @@
-package com.springfirst.springfirst.security;
+package com.springfirst.springfirst.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
