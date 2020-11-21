@@ -6,6 +6,7 @@ import com.springfirst.springfirst.repository.UserRepository;
 import com.springfirst.springfirst.models.Location;
 import com.springfirst.springfirst.models.SocialClub;
 import com.springfirst.springfirst.models.User;
+import com.springfirst.springfirst.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,13 +29,14 @@ public class DashboardController {
 	private UserRepository userRepo;
 	private LocationRepository locationRepository;
 	private SocialClubRepository socialClubRepository;
-
+	private DashboardService dashboardService;
 	@Autowired
 	public DashboardController(UserRepository userRepo, LocationRepository locationRepository,
-			SocialClubRepository socialRepo) {
+			SocialClubRepository socialRepo, DashboardService dashboardService) {
 		this.userRepo = userRepo;
 		this.locationRepository = locationRepository;
 		this.socialClubRepository = socialRepo;
+		this.dashboardService = dashboardService;
 	}
 
 	@ModelAttribute(name = "social")
@@ -69,19 +71,10 @@ public class DashboardController {
 			@AuthenticationPrincipal User user) {
 
 		if (errors.hasErrors()) {
-			System.out.println ("============== in error section");
-			System.out.println(errors);
 			return "dashboard";
 		}
 
-		List<SocialClub> test2 = this.socialClubRepository.findByUser(user);
-
-		if (social.getPinStatus() == 1) {
-			test2.stream().forEach(x -> {
-				x.setPinStatus(0);
-				this.socialClubRepository.save(x);
-			});
-		}
+		this.dashboardService.updateSocialPinStatus(social, user);
 
 		social.setUser(user);
 		this.socialClubRepository.save(social);
