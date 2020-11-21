@@ -1,4 +1,4 @@
-package com.springfirst.springfirst.data;
+package com.springfirst.springfirst.repository;
 
 import com.springfirst.springfirst.models.User;
 import org.springframework.data.domain.Sort;

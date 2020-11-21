@@ -1,4 +1,4 @@
-package com.springfirst.springfirst.web;
+package com.springfirst.springfirst.controllers;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.springfirst.springfirst.data.SocialClubRepository;
+import com.springfirst.springfirst.repository.SocialClubRepository;
 import com.springfirst.springfirst.models.SocialClub;
 
 @Controller
